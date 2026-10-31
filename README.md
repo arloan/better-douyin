@@ -1,4 +1,6 @@
-# douyinkit
+# 抖音精灵 / Better Douyin
+
+（原项目代号 douyinkit；扩展显示名支持多语言，见下）
 
 抖音 Web 版（www.douyin.com）增强 Chrome 扩展（Manifest V3）。
 
@@ -23,6 +25,7 @@
 
 ## 目录
 
+- `extension/_locales/` — 多语言文案（`zh_CN` 默认、`en`），名称/描述/弹窗/对话框均已接入
 - `extension/manifest.json` — MV3 清单
 - `extension/content.js` — 全部功能逻辑
 - `extension/popup.html` / `popup.js` — 设置弹窗

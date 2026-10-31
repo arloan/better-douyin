@@ -9,6 +9,12 @@ const DEFAULTS = {
 
 const ids = ['quickBlock', 'stripEmojiSpaces', 'applyDefaults', 'defaultResolution', 'defaultSpeed'];
 
+function t(key) {
+  return (chrome.i18n && chrome.i18n.getMessage && chrome.i18n.getMessage(key)) || key;
+}
+
+for (const el of document.querySelectorAll('[data-i18n]')) el.textContent = t(el.getAttribute('data-i18n'));
+
 function render(s) {
   for (const id of ids) {
     const el = document.getElementById(id);

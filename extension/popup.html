@@ -5,7 +5,7 @@
 <style>
   body{width:320px;margin:0;padding:16px 18px;font:14px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#fff;color:#161823}
   h1{font-size:16px;margin:0 0 14px}
-  .row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #f0f0f0}
+  .row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #f0f0f0;gap:12px}
   .row:last-child{border-bottom:none}
   .row label{flex:1;cursor:pointer}
   .row .hint{display:block;font-size:12px;color:#8a8f99}
@@ -20,38 +20,38 @@
 </style>
 </head>
 <body>
-  <h1>douyinkit 设置</h1>
+  <h1 data-i18n="settingsTitle"></h1>
 
   <div class="row">
-    <label for="quickBlock">视频页头像快速拉黑</label>
+    <label for="quickBlock" data-i18n="quickBlock"></label>
     <span class="switch"><input type="checkbox" id="quickBlock"><span class="slider"></span></span>
   </div>
 
   <div class="row">
-    <label for="stripEmojiSpaces">评论表情去掉前后空格<span class="hint">插入官方表情时不再自动加空格</span></label>
+    <label for="stripEmojiSpaces"><span data-i18n="stripEmojiSpaces"></span><span class="hint" data-i18n="stripEmojiSpacesHint"></span></label>
     <span class="switch"><input type="checkbox" id="stripEmojiSpaces"><span class="slider"></span></span>
   </div>
 
   <div class="row">
-    <label for="applyDefaults">默认清晰度 / 倍速<span class="hint">进入页面时自动应用</span></label>
+    <label for="applyDefaults"><span data-i18n="applyDefaults"></span><span class="hint" data-i18n="applyDefaultsHint"></span></label>
     <span class="switch"><input type="checkbox" id="applyDefaults"><span class="slider"></span></span>
   </div>
 
   <div class="row">
-    <label for="defaultResolution">默认清晰度</label>
+    <label for="defaultResolution" data-i18n="defaultResolution"></label>
     <select id="defaultResolution">
-      <option value="自动">智能（默认）</option>
-      <option value="高清 1080P">高清 1080P</option>
-      <option value="高清 720P">高清 720P</option>
-      <option value="标清 540P">标清 540P</option>
-      <option value="极速">极速</option>
+      <option value="自动" data-i18n="resAuto"></option>
+      <option value="高清 1080P" data-i18n="res1080"></option>
+      <option value="高清 720P" data-i18n="res720"></option>
+      <option value="标清 540P" data-i18n="res540"></option>
+      <option value="极速" data-i18n="resFast"></option>
     </select>
   </div>
 
   <div class="row">
-    <label for="defaultSpeed">默认倍速</label>
+    <label for="defaultSpeed" data-i18n="defaultSpeed"></label>
     <select id="defaultSpeed">
-      <option value="0">不干预</option>
+      <option value="0" data-i18n="speedOff"></option>
       <option value="0.75">0.75x</option>
       <option value="1">1.0x</option>
       <option value="1.25">1.25x</option>
@@ -62,7 +62,7 @@
     </select>
   </div>
 
-  <div class="foot">设置即时生效；清晰度/倍速对已打开的视频卡片不追溯，切换视频后生效。</div>
+  <div class="foot" data-i18n="footNote"></div>
 
 <script src="popup.js"></script>
 </body>

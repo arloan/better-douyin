@@ -1,24 +1,33 @@
 {
   "manifest_version": 3,
-  "name": "douyinkit",
+  "name": "__MSG_extensionName__",
   "version": "0.1.0",
-  "description": "抖音 Web 增强：视频页快速拉黑、评论表情去空格、默认清晰度/倍速。",
-  "permissions": ["storage"],
-  "host_permissions": ["https://www.douyin.com/*"],
+  "description": "__MSG_extensionDescription__",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.douyin.com/*"
+  ],
   "content_scripts": [
     {
-      "matches": ["https://www.douyin.com/*"],
-      "js": ["content.js"],
+      "matches": [
+        "https://www.douyin.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_start"
     }
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "douyinkit 设置"
+    "default_title": "__MSG_settingsTitle__"
   },
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
-  }
+  },
+  "default_locale": "zh_CN"
 }

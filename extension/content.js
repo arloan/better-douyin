@@ -12,6 +12,25 @@
 
   const SETTINGS_KEY = 'douyinkit_settings';
 
+  function t(key, ...subs) {
+    const s = chrome.i18n && chrome.i18n.getMessage && chrome.i18n.getMessage(key, subs);
+    if (s) return s;
+    let fb = FALLBACK[key] || key;
+    subs.forEach((v, i) => { fb = fb.replace('{' + (i + 1) + '}', v); });
+    return fb;
+  }
+
+  const FALLBACK = {
+    confirmTitle: '确认拉黑？',
+    confirmBody: '拉黑后 {1} 将无法搜索到你，也不能给你发私信。',
+    cancel: '取消',
+    confirmOk: '确认拉黑',
+    blocked: '已拉黑',
+    blockFailed: '拉黑失败，请稍后重试',
+    noCreator: '未识别到博主，无法拉黑',
+    btnTitle: '拉黑该博主'
+  };
+
   const DEFAULTS = {
     quickBlock: true,
     stripEmojiSpaces: true,
@@ -143,11 +162,11 @@
       overlay.className = 'dyk-overlay';
       overlay.innerHTML = `
         <div class="dyk-dialog">
-          <h3>确认拉黑？</h3>
-          <p>拉黑后 <span class="dyk-who">${esc(nickname) || '该博主'}</span> 将无法搜索到你，也不能给你发私信。</p>
+          <h3>${esc(t('confirmTitle'))}</h3>
+          <p>${esc(t('confirmBody', nickname || (document.documentElement.lang || '').startsWith('en') ? 'this creator' : '该博主'))}</p>
           <div class="dyk-actions">
-            <button class="dyk-btn" data-act="cancel">取消</button>
-            <button class="dyk-btn dyk-primary" data-act="ok">确认拉黑</button>
+            <button class="dyk-btn" data-act="cancel">${esc(t('cancel'))}</button>
+            <button class="dyk-btn dyk-primary" data-act="ok">${esc(t('confirmOk'))}</button>
           </div>
         </div>`;
       const done = (v) => { overlay.remove(); document.removeEventListener('keydown', onKey); resolve(v); };
@@ -195,7 +214,7 @@
 
   async function handleBlockClick(btn) {
     const secUid = btn.dataset.dykSec;
-    if (!secUid) return toast('未识别到博主，无法拉黑');
+    if (!secUid) return toast(t('noCreator'));
     btn.classList.add('dyk-on');
     if (!(await confirmDialog(btn.dataset.dykName))) {
       btn.classList.remove('dyk-on');
@@ -206,15 +225,15 @@
       const ok = await blockUser(secUid, uid);
       if (ok) {
         btn.classList.add('dyk-done');
-        toast('已拉黑');
+        toast(t('blocked'));
         setTimeout(() => btn.classList.remove('dyk-on', 'dyk-done'), 3000);
       } else {
         btn.classList.remove('dyk-on');
-        toast('拉黑失败，请稍后重试');
+        toast(t('blockFailed'));
       }
     } catch (e) {
       btn.classList.remove('dyk-on');
-      toast('拉黑失败，请稍后重试');
+      toast(t('blockFailed'));
     }
   }
 
@@ -236,7 +255,7 @@
     const btn = document.createElement('button');
     btn.className = 'dyk-block-btn';
     btn.type = 'button';
-    btn.title = '拉黑该博主';
+    btn.title = t('btnTitle');
     btn.innerHTML = ICON;
     btn.dataset.dykSec = sec;
     btn.dataset.dykName = (nicknameEl && nicknameEl.textContent.trim()) || '';
