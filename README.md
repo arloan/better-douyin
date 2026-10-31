@@ -1,0 +1,29 @@
+# douyinkit
+
+抖音 Web 版（www.douyin.com）增强 Chrome 扩展（Manifest V3）。
+
+## 功能
+
+1. **快速拉黑**：视频流里鼠标悬停到博主头像，右上角出现 🚫 小按钮，点击后弹出确认框，确认即拉黑（走抖音官方接口 `POST /aweme/v1/web/user/block/`，无需进主页点"…"菜单）。
+2. **评论表情去空格**：插入官方表情时抖音会自动写成 `" [微笑] "`（前后各一个空格），本扩展会自动校正为 `[微笑]`。
+3. **默认清晰度 / 倍速**：在扩展弹窗里设置后，写入抖音自己的存储键（`localStorage.playerResolution`、`sessionStorage.player_playbackratio`），新打开的视频卡片自动应用。
+
+## 安装
+
+1. 打开 `chrome://extensions`，开启右上角"开发者模式"。
+2. 点"加载已解压的扩展程序"，选择本仓库的 `extension/` 目录。
+3. 刷新已打开的抖音页面。
+
+## 使用说明
+
+- 拉黑按钮默认悬停头像时显示；确认框支持 Esc / 点击遮罩取消。
+- 表情去空格只在官方表情面板点击表情时生效；含 @ 提及时不重写，避免破坏提及实体。
+- 默认清晰度/倍速对已渲染的视频卡片不追溯，切换视频或刷新后生效。
+- 设置保存在 `chrome.storage.local`，弹窗里改动即时生效。
+
+## 目录
+
+- `extension/manifest.json` — MV3 清单
+- `extension/content.js` — 全部功能逻辑
+- `extension/popup.html` / `popup.js` — 设置弹窗
+- `.analysis/` — 开发期的抓包/探测脚本与素材（可忽略）

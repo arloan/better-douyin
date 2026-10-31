@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  body{width:320px;margin:0;padding:16px 18px;font:14px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#fff;color:#161823}
+  h1{font-size:16px;margin:0 0 14px}
+  .row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #f0f0f0}
+  .row:last-child{border-bottom:none}
+  .row label{flex:1;cursor:pointer}
+  .row .hint{display:block;font-size:12px;color:#8a8f99}
+  select{padding:4px 8px;border:1px solid #ddd;border-radius:6px;background:#fff;font-size:13px}
+  .switch{position:relative;width:40px;height:22px;flex:none}
+  .switch input{opacity:0;width:0;height:0}
+  .slider{position:absolute;inset:0;background:#ccc;border-radius:22px;transition:.15s;cursor:pointer}
+  .slider:before{content:"";position:absolute;width:18px;height:18px;left:2px;top:2px;background:#fff;border-radius:50%;transition:.15s}
+  input:checked+.slider{background:#fe2c55}
+  input:checked+.slider:before{transform:translateX(18px)}
+  .foot{margin-top:12px;font-size:12px;color:#8a8f99}
+</style>
+</head>
+<body>
+  <h1>douyinkit 设置</h1>
+
+  <div class="row">
+    <label for="quickBlock">视频页头像快速拉黑</label>
+    <span class="switch"><input type="checkbox" id="quickBlock"><span class="slider"></span></span>
+  </div>
+
+  <div class="row">
+    <label for="stripEmojiSpaces">评论表情去掉前后空格<span class="hint">插入官方表情时不再自动加空格</span></label>
+    <span class="switch"><input type="checkbox" id="stripEmojiSpaces"><span class="slider"></span></span>
+  </div>
+
+  <div class="row">
+    <label for="applyDefaults">默认清晰度 / 倍速<span class="hint">进入页面时自动应用</span></label>
+    <span class="switch"><input type="checkbox" id="applyDefaults"><span class="slider"></span></span>
+  </div>
+
+  <div class="row">
+    <label for="defaultResolution">默认清晰度</label>
+    <select id="defaultResolution">
+      <option value="自动">智能（默认）</option>
+      <option value="高清 1080P">高清 1080P</option>
+      <option value="高清 720P">高清 720P</option>
+      <option value="标清 540P">标清 540P</option>
+      <option value="极速">极速</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <label for="defaultSpeed">默认倍速</label>
+    <select id="defaultSpeed">
+      <option value="0">不干预</option>
+      <option value="0.75">0.75x</option>
+      <option value="1">1.0x</option>
+      <option value="1.25">1.25x</option>
+      <option value="1.5">1.5x</option>
+      <option value="1.75">1.75x</option>
+      <option value="2">2.0x</option>
+      <option value="3">3.0x</option>
+    </select>
+  </div>
+
+  <div class="foot">设置即时生效；清晰度/倍速对已打开的视频卡片不追溯，切换视频后生效。</div>
+
+<script src="popup.js"></script>
+</body>
+</html>
