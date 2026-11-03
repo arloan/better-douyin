@@ -8,7 +8,10 @@
 
 1. **快速拉黑**：视频流里鼠标悬停到博主头像，右上角出现 🚫 小按钮，点击后弹出确认框，确认即拉黑（走抖音官方接口 `POST /aweme/v1/web/user/block/`，无需进主页点"…"菜单）。
 2. **评论表情去空格**：插入官方表情时抖音会自动写成 `" [微笑] "`（前后各一个空格），本扩展会自动校正为 `[微笑]`。
-3. **默认清晰度 / 倍速**：在扩展弹窗里设置后，写入抖音自己的存储键（`localStorage.playerResolution`、`sessionStorage.player_playbackratio`），新打开的视频卡片自动应用。
+3. **默认清晰度 / 倍速**：在扩展弹窗里设置后自动应用，不用每次手动点。
+   - 倍速：直接写抖音自己的存储键 `sessionStorage.player_playbackratio`（数字）。
+   - 清晰度：抖音把当前档位存在 `sessionStorage.MANUAL_SWITCH`（JSON），但每次页面挂载都会把它清掉，所以扩展用主世界脚本（`inject.js`，`document_start`）拦住这次清空并写回设定档位，抖音自己的播放器逻辑随后就会采纳。档位常量取自抖音的映射表：`Auto:0 / Hd:1 / Clear:2 / Smooth:3 / Fast:4`。
+   - 注意：不是所有视频都提供全部档位，视频没有对应流时抖音会回退。
 
 ## 安装
 
@@ -28,5 +31,6 @@
 - `extension/_locales/` — 多语言文案（`zh_CN` 默认、`en`），名称/描述/弹窗/对话框均已接入
 - `extension/manifest.json` — MV3 清单
 - `extension/content.js` — 全部功能逻辑
+- `extension/inject.js` — 主世界注入脚本，负责默认清晰度的存储拦截
 - `extension/popup.html` / `popup.js` — 设置弹窗
 - `.analysis/` — 开发期的抓包/探测脚本与素材（可忽略）

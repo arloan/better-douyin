@@ -1,0 +1,104 @@
+{
+  "extensionName": {
+    "message": "Better Douyin",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "Douyin web tweaks: quick block, no emoji padding spaces, default quality and playback speed.",
+    "description": "Extension description"
+  },
+  "settingsTitle": {
+    "message": "Better Douyin Settings",
+    "description": "Popup heading"
+  },
+  "quickBlock": {
+    "message": "Quick block button on avatars",
+    "description": "Popup option"
+  },
+  "stripEmojiSpaces": {
+    "message": "Remove spaces around official emojis",
+    "description": "Popup option"
+  },
+  "stripEmojiSpacesHint": {
+    "message": "Inserted emojis no longer get a leading/trailing space",
+    "description": "Popup hint"
+  },
+  "applyDefaults": {
+    "message": "Default quality / speed",
+    "description": "Popup option"
+  },
+  "applyDefaultsHint": {
+    "message": "Applied automatically when the page loads",
+    "description": "Popup hint"
+  },
+  "defaultResolution": {
+    "message": "Default quality",
+    "description": "Popup label"
+  },
+  "defaultSpeed": {
+    "message": "Default speed",
+    "description": "Popup label"
+  },
+  "resAuto": {
+    "message": "Auto",
+    "description": "Quality option"
+  },
+  "res1080": {
+    "message": "HD 1080P",
+    "description": "Quality option"
+  },
+  "res720": {
+    "message": "HD 720P",
+    "description": "Quality option"
+  },
+  "res540": {
+    "message": "SD 540P",
+    "description": "Quality option"
+  },
+  "resFast": {
+    "message": "Data saver",
+    "description": "Quality option"
+  },
+  "speedOff": {
+    "message": "Leave as is",
+    "description": "Speed option"
+  },
+  "footNote": {
+    "message": "Settings apply immediately. Quality/speed take effect on videos loaded afterwards.",
+    "description": "Popup footnote"
+  },
+  "confirmTitle": {
+    "message": "Block this creator?",
+    "description": "Dialog heading"
+  },
+  "confirmBody": {
+    "message": "After blocking, {1} can no longer find you or send you messages.",
+    "description": "Dialog body, {1} is the creator name",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "小明"
+      }
+    }
+  },
+  "cancel": {
+    "message": "Cancel",
+    "description": "Dialog button"
+  },
+  "confirmOk": {
+    "message": "Block",
+    "description": "Dialog button"
+  },
+  "blocked": {
+    "message": "Blocked",
+    "description": "Toast"
+  },
+  "blockFailed": {
+    "message": "Block failed, please try again",
+    "description": "Toast"
+  },
+  "noCreator": {
+    "message": "Creator not detected, cannot block",
+    "description": "Toast"
+  }
+}

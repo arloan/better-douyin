@@ -15,6 +15,16 @@
         "https://www.douyin.com/*"
       ],
       "js": [
+        "inject.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://www.douyin.com/*"
+      ],
+      "js": [
         "content.js"
       ],
       "run_at": "document_start"

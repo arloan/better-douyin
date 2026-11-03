@@ -35,8 +35,8 @@
     quickBlock: true,
     stripEmojiSpaces: true,
     applyDefaults: true,
-    defaultSpeed: 0,          // 0 = 不干预
-    defaultResolution: '自动' // 自动 | 高清 1080P | 高清 720P | 标清 540P | 极速
+    defaultSpeed: 0,        // 0 = 不干预
+    defaultResolution: 'Auto' // Auto | Hd | Clear | Smooth | Fast
   };
 
   let settings = { ...DEFAULTS };
@@ -57,23 +57,38 @@
    * 3. 默认清晰度 / 倍速
    * ------------------------------------------------------------------ */
 
-  // 抖音自身使用 sessionStorage.player_playbackratio 保存倍速（数字）
-  // 以及 localStorage.playerResolution = "<key>,<过期毫秒>"（逗号分隔，非 JSON）
+  // 倍速：抖音自己读 sessionStorage.player_playbackratio（数字），直接写即可。
+  //
+  // 清晰度：抖音把当前档位存在 sessionStorage.MANUAL_SWITCH（JSON），
+  // 但每次页面挂载都会先清空它，所以必须靠 inject.js（主世界）在清空后写回。
+  // 内容脚本在隔离世界改不了 Storage，这里通过 localStorage 镜像键 + postMessage 传值。
+  //
+  // gearType / gearClarity 取自抖音自己的常量表（webpack 模块 515205）。
+  const RES_MAP = {
+    Auto:   { gearType: 0, gearClarity: '0', gearName: '智能' },
+    Hd:     { gearType: 1, gearClarity: '5', gearName: '高清 1080P' },
+    Clear:  { gearType: 2, gearClarity: '4', gearName: '高清 720P' },
+    Smooth: { gearType: 3, gearClarity: '3', gearName: '标清 540P' },
+    Fast:   { gearType: 4, gearClarity: '2', gearName: '极速' }
+  };
+  // 兼容旧版本存下来的中文值
+  const RES_ALIAS = { '自动': 'Auto', '高清 1080P': 'Hd', '高清 720P': 'Clear', '标清 540P': 'Smooth', '极速': 'Fast' };
+  const RES_MIRROR = 'douyinkit_res';
+
+  function resPayload(key) {
+    const map = RES_MAP[RES_ALIAS[key] || key];
+    if (!map || map.gearType === 0) return '';
+    return JSON.stringify({ done: 1, gearType: map.gearType, gearClarity: map.gearClarity, gearName: map.gearName });
+  }
+
   function applyPlayerDefaults() {
-    if (!settings.applyDefaults) return;
     try {
       const speed = Number(settings.defaultSpeed) || 0;
-      if (speed > 0) sessionStorage.setItem('player_playbackratio', String(speed));
+      if (settings.applyDefaults && speed > 0) sessionStorage.setItem('player_playbackratio', String(speed));
 
-      const res = settings.defaultResolution || '自动';
-      if (res === '自动') {
-        // 抖音把"自动"当作未设置处理，直接清空即可
-        localStorage.removeItem('playerResolution');
-      } else {
-        // 抖音原生格式：localStorage.playerResolution = "<显示名>,<过期毫秒>"
-        const expire = Date.now() + 365 * 24 * 3600 * 1000;
-        localStorage.setItem('playerResolution', `${res},${expire}`);
-      }
+      const payload = settings.applyDefaults ? resPayload(settings.defaultResolution) : '';
+      try { localStorage.setItem(RES_MIRROR, payload); } catch (e) { /* ignore */ }
+      window.postMessage({ __douyinkit: 'res', value: payload }, window.location.origin);
     } catch (e) {
       /* 隐私模式下 storage 可能抛错，忽略 */
     }

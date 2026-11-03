@@ -1,0 +1,104 @@
+{
+  "extensionName": {
+    "message": "抖音精灵",
+    "description": "扩展名称"
+  },
+  "extensionDescription": {
+    "message": "抖音网页版增强：一键快速拉黑、评论表情去空格、默认清晰度与倍速。",
+    "description": "扩展描述"
+  },
+  "settingsTitle": {
+    "message": "抖音精灵设置",
+    "description": "弹窗标题"
+  },
+  "quickBlock": {
+    "message": "视频页头像快速拉黑",
+    "description": "设置项"
+  },
+  "stripEmojiSpaces": {
+    "message": "评论表情去掉前后空格",
+    "description": "设置项"
+  },
+  "stripEmojiSpacesHint": {
+    "message": "插入官方表情时不再自动加空格",
+    "description": "提示"
+  },
+  "applyDefaults": {
+    "message": "默认清晰度 / 倍速",
+    "description": "设置项"
+  },
+  "applyDefaultsHint": {
+    "message": "进入页面时自动应用",
+    "description": "提示"
+  },
+  "defaultResolution": {
+    "message": "默认清晰度",
+    "description": "设置项"
+  },
+  "defaultSpeed": {
+    "message": "默认倍速",
+    "description": "设置项"
+  },
+  "resAuto": {
+    "message": "智能（默认）",
+    "description": "选项"
+  },
+  "res1080": {
+    "message": "高清 1080P",
+    "description": "选项"
+  },
+  "res720": {
+    "message": "高清 720P",
+    "description": "选项"
+  },
+  "res540": {
+    "message": "标清 540P",
+    "description": "选项"
+  },
+  "resFast": {
+    "message": "极速",
+    "description": "选项"
+  },
+  "speedOff": {
+    "message": "不干预",
+    "description": "选项"
+  },
+  "footNote": {
+    "message": "设置即时生效；清晰度/倍速对新加载的视频生效。",
+    "description": "脚注"
+  },
+  "confirmTitle": {
+    "message": "确认拉黑？",
+    "description": "对话框标题"
+  },
+  "confirmBody": {
+    "message": "拉黑后 {1} 将无法搜索到你，也不能给你发私信。",
+    "description": "对话框正文，{1} 为博主昵称",
+    "placeholders": {
+      "1": {
+        "content": "$1",
+        "example": "小明"
+      }
+    }
+  },
+  "cancel": {
+    "message": "取消",
+    "description": "按钮"
+  },
+  "confirmOk": {
+    "message": "确认拉黑",
+    "description": "按钮"
+  },
+  "blocked": {
+    "message": "已拉黑",
+    "description": "提示"
+  },
+  "blockFailed": {
+    "message": "拉黑失败，请稍后重试",
+    "description": "提示"
+  },
+  "noCreator": {
+    "message": "未识别到博主，无法拉黑",
+    "description": "提示"
+  }
+}
