@@ -33,4 +33,3 @@
 - `extension/content.js` — 全部功能逻辑
 - `extension/inject.js` — 主世界注入脚本，负责默认清晰度的存储拦截
 - `extension/popup.html` / `popup.js` — 设置弹窗
-- `.analysis/` — 开发期的抓包/探测脚本与素材（可忽略）
